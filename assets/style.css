@@ -1,0 +1,63 @@
+nav {
+    background-color: rgb(65, 65, 65);
+    border-bottom: rgb(185, 185, 185) .5px solid;
+    padding: 10px;
+}
+
+.weather-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.weather-clear {
+    background-image: url(img/clear.gif);
+}
+
+.weather-clouds {
+    background-image: url(img/clouds.gif);
+}
+
+.weather-fog {
+    background-image: url(img/fog.gif);
+}
+
+.weather-rain {
+    background-image: url(img/rain.gif);
+}
+
+.weather-snow {
+    background-image: url(img/snow.gif);
+}
+
+.weather-thunderstorm {
+    background-image: url(img/thunderstorm.gif);
+}
+
+.weather-card-container {
+    max-width: 540px;
+}
+
+.temperature {
+    width: 50px;
+}
+
+.chart-body .area {
+    --color: rgba(19, 79, 151, 1);
+    --aspect-ratio: 500 / 100;
+}
+
+.form-container {
+    max-width: 540px;
+}
+
+.white-link>a {
+    color: white !important;
+}
+
+.add-fav-button {
+    color: #e3e388;
+}
+
+.remove-fav-button {
+    color: #ffffff;
+}
