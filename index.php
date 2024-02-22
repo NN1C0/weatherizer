@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['lat']) && isset($_GET['
     $lon = "4.8936041";
 }
 
-$weatherInfo = getWeatherData($lat, $lon);
+$weatherInfo = getWeatherData($lat, $lon, TEMPERATURE_UNIT);
 
 ?>
 

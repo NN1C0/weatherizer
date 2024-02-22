@@ -28,6 +28,9 @@ include_once "src/user.controller.php";
                             <a class="dropdown-item" href="favourites.php">Favourites</a>
                         </li>
                         <li>
+                            <a class="dropdown-item" href="settings.php">Settings</a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </li>
                         <?php } else { ?>

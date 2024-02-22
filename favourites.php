@@ -2,6 +2,7 @@
     include_once "src/user.controller.php";
     include_once "src/weather.controller.php";
     include_once "src/openweathermap.controller.php";
+    include_once "src/constants.php";
 
 if (isset($_GET['action']) && $_GET['action'] == 'addFavourite') {
     if (isset($_GET['lat']) && isset($_GET['lon']) && isset($_GET['location'])) {
@@ -40,7 +41,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'removeFavourite') {
             $favourites = getUserFavourites(getUserId());
             if ($favourites) {
                 foreach ($favourites as $favourite) {
-                    $weatherData = getWeatherData($favourite['lat'], $favourite['lon']);
+                    $weatherData = getWeatherData($favourite['lat'], $favourite['lon'], TEMPERATURE_UNIT);
                     echo "<div class=\"col-12 col-md-6 col-lg-4 mb-3\">";
                     echo generateFavouriteCard($weatherData, $favourite['location'], $favourite['id']);
                     echo "</div>";

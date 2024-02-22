@@ -249,3 +249,71 @@ function generateRemoveFromFavouritesButton($id)
                 <i class=\"fas fa-trash\"></i>
             </a>";
 }
+
+function changePassword($currentPassword, $newPassword, $confirmNewPassword)
+{
+    $userId = getUserId();
+    if ($newPassword != $confirmNewPassword) {
+        return false;
+    }
+    try {
+        $db_connection = createDatabaseConnection();
+        $query = $db_connection->prepare("SELECT password FROM user WHERE id = :id");
+        $query->bindParam(":id", $userId);
+        $query->execute();
+        if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+            $fetched_password = $result['password'];
+            if (password_verify($currentPassword, $fetched_password)) {
+                $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                $query = $db_connection->prepare("UPDATE user SET password = :password WHERE id = :id");
+                $query->bindParam(":password", $newPassword);
+                $query->bindParam(":id", $userId);
+                $query->execute();
+                return true;
+            }
+        }
+        $db_connection = null;
+        return false;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+}
+
+function changeTemperatureUnit($unit)
+{
+    $userId = getUserId();
+    if ($unit != "metric" && $unit != "imperial") {
+        return false;
+    }
+    try {
+        $db_connection = createDatabaseConnection();
+        $query = $db_connection->prepare("UPDATE user SET temperature_unit = :temperature_unit WHERE id = :id");
+        $query->bindParam(":temperature_unit", $unit);
+        $query->bindParam(":id", $userId);
+        $query->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+
+    return false;
+}
+
+function getTemperatureUnit()
+{
+    $userId = getUserId();
+    try {
+        $db_connection = createDatabaseConnection();
+        $query = $db_connection->prepare("SELECT temperature_unit FROM user WHERE id = :id");
+        $query->bindParam(":id", $userId);
+        $query->execute();
+        if ($result = $query->fetch(PDO::FETCH_ASSOC)) {
+            $unit = $result['temperature_unit'];
+            return $unit;
+        }
+        $db_connection = null;
+        return false;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+}

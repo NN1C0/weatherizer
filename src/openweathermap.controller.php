@@ -29,14 +29,14 @@ function searchForCities($searchTerm)
 }
 
 
-function getWeatherData($lat, $lon)
+function getWeatherData($lat, $lon, $tempertureUnit = "celcius")
 {
     $API_KEY = $_ENV['OPENWEATHERMAP_API_KEY'];
 
     $weatherResult = null;
 
     try {
-        $apiUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&exclude=alerts&units=metric&appid=$API_KEY";
+        $apiUrl = "https://api.openweathermap.org/data/3.0/onecall?lat=$lat&lon=$lon&exclude=alerts&units=$tempertureUnit&appid=$API_KEY";
 
         $response = file_get_contents($apiUrl);
         $data = json_decode($response);
